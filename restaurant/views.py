@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics, viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from . import models
 from . import serializers
@@ -20,5 +21,6 @@ class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class BookingViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = models.Booking.objects.all()
     serializer_class = serializers.BookingSerializer
